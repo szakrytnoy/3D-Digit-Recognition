@@ -53,75 +53,38 @@ Thus, the features that were selected for this program were unit vectors (direct
 
 ## Input call Script (prepare_train.py)
 
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
 ```
-Give the example
+Give examples
 ```
 
-And repeat
+This script of ours calls all the input functions and saves the extracted features in temporary files. Since the training dataset is not modified during testing, this makes the features easier and faster to access.
+
+## Classification (knn_wrapped.py)
+The classifier we have used for this program in the K-nearest Neighbor classifier. 
+
+KNN classifier is one of the most commonly used classifiers and one of the least computationally demanding. It works such a way that it does not make any assumptions about the underlying data neither uses the training data for any generalizations. For classification the KNN relies on the distance between the feature vectors, where it classifies unknown data points by finding the most common class among the k closest neighbors and classifying it to the class with the most numbers.
 
 ```
-until finished
+Give examples
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+For getting the predicted class, we iterate from 1 to total number of test data points (if there are more than 1) and within the loop find distances between each test sample and all the training samples.
 
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
+We can use either Euclidean distance or Manhattan distance as the distance metrics. Although empirically we have derived higher accuracy with the Manhattan distance metric, there is also the possibility of using Euclidean distance in our function:
 
 ```
-Give an example
+Give examples
 ```
 
-### And coding style tests
+We then sort the distances in each row of the array, select the k first elements and find the most frequent label corresponding to the selected datapoints from the training set.
 
-Explain what these tests test and why
+## Testing (test.py)
 
 ```
-Give an example
+Give examples
 ```
 
-## Deployment
+This script is where all the previous functions are wrapped together. It calls for the importing of the temporary files as well as the classifier function. The test samples input can be anything from 1 to n rows of extracted features. Feature extraction for the test sample is realized in a separate function which is similar to the one used in preprocessing of training dataset. 
 
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+## Results
+Careful feature extraction and well-thought-out solution design allows for quick (~ 3 sec) and accurate (expected accuracy ~ 94%) classification of 3-D Digits.
